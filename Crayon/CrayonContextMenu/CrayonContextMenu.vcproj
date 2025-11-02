@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="ExplorerCommandVerb"
+	Name="CrayonContextMenu"
 	ProjectGUID="{6ADD939C-A7C3-4FB3-B08B-8B037854E98C}"
-	RootNamespace="ExplorerCommandVerb"
+	RootNamespace="CrayonContextMenu"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
