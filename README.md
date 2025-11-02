@@ -1,2 +1,5 @@
+<img src="Crayon.svg" alt="Crayon" height="64">
+
 # Crayon
-Crayon App
+
+A folder color changer
