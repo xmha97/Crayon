@@ -49,6 +49,7 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <UserSecretsId>6113dc01-9c9d-45b1-bea0-bf719cca9f73</UserSecretsId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <AppxBundle>Always</AppxBundle>
@@ -74,7 +75,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Crayon.ContextMenu.dll">
+    <Content Include="..\Crayon.ContextMenu\x64\Debug\Crayon.ContextMenu.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Crayon %28Package%29_TemporaryKey.pfx" />
