@@ -75,7 +75,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Crayon.ContextMenu\x64\Debug\Crayon.ContextMenu.dll">
+    <Content Include="..\CrayonContextMenu\x64\Debug\CrayonContextMenu.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Crayon %28Package%29_TemporaryKey.pfx" />

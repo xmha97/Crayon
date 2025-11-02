@@ -5,21 +5,24 @@
 	xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
 	xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"
 	xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+    xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
 	xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-	xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10/4"
+	xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
 	xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
 	xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
 	xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
 	xmlns:desktop9="http://schemas.microsoft.com/appx/manifest/desktop/windows10/9"
 	xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-	IgnorableNamespaces="uap uap2 uap3 rescap com desktop9 mp">
+	IgnorableNamespaces="uap uap2 uap3 uap10 rescap com desktop desktop4 desktop5 desktop9 mp">
 
-	<Identity Name="Ammari.Crayon" Publisher="CN=Ammari" Version="1.0.4.0" />
+	<Identity Name="Ammari.Crayon"
+			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
+			  Version="1.0.4.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
 		PhonePublisherId="00000000-0000-0000-0000-000000000000" />
-	
+
 	<Properties>
 		<DisplayName>Crayon</DisplayName>
 		<PublisherDisplayName>Ammari</PublisherDisplayName>
@@ -27,14 +30,18 @@
 	</Properties>
 
 	<Dependencies>
-		<TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
-		<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+		<TargetDeviceFamily	Name="Windows.Universal"
+							MinVersion="10.0.17763.0"
+							MaxVersionTested="10.0.19041.0" />
+		<TargetDeviceFamily Name="Windows.Desktop"
+							MinVersion="10.0.17763.0"
+							MaxVersionTested="10.0.19041.0" />
 	</Dependencies>
 
 	<Resources>
 		<Resource Language="x-generate"/>
 	</Resources>
-	
+
 	<Applications>
 		<Application Id="App"
 					 Executable="$targetnametoken$.exe"
@@ -54,29 +61,52 @@
 				<uap:LockScreen BadgeLogo="Images\BadgeLogo.png" Notification="badgeAndTileText"/>
 			</uap:VisualElements>
 			<Extensions>
+
+				<desktop9:Extension Category="windows.fileExplorerClassicContextMenuHandler">
+					<desktop9:FileExplorerClassicContextMenuHandler>
+						<desktop9:ExtensionHandler Type=".library-ms" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+						<desktop9:ExtensionHandler Type="Directory" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+					</desktop9:FileExplorerClassicContextMenuHandler>
+				</desktop9:Extension>
+
+				<desktop9:Extension Category="windows.fileExplorerClassicDragDropContextMenuHandler">
+					<desktop9:FileExplorerClassicDragDropContextMenuHandler>
+						<desktop9:ExtensionHandler Type="Directory" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+						<desktop9:ExtensionHandler Type="Drive" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+					</desktop9:FileExplorerClassicDragDropContextMenuHandler>
+				</desktop9:Extension>
+
+
 				<uap:Extension Category="windows.protocol">
 					<uap:Protocol Name="crayon"/>
 				</uap:Extension>
 
-				<com:Extension Category="windows.comServer">
-					<com:ComServer>
-						<com:SurrogateServer DisplayName="Crayon.ContextMenu">
-							<com:Class Id="09E0D2D4-B928-4DCA-8FDA-69671153BB20" Path="CrayonContextMenu.dll" ThreadingModel="STA"/>
-						</com:SurrogateServer>
-					</com:ComServer>
-				</com:Extension>
+				<uap3:Extension Category="windows.appExecutionAlias">
+					<uap3:AppExecutionAlias>
+						<desktop:ExecutionAlias Alias="Crayon.exe"/>
+					</uap3:AppExecutionAlias>
+				</uap3:Extension>
+
 				<desktop4:Extension Category="windows.fileExplorerContextMenus">
 					<desktop4:FileExplorerContextMenus>
-						<desktop5:ItemType Type="Directory">
-							<desktop5:Verb Id="Command1" Clsid="09E0D2D4-B928-4DCA-8FDA-69671153BB20" />
+						<desktop5:ItemType Type="*">
+							<desktop5:Verb Id="CrayonCommand" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
 						</desktop5:ItemType>
 					</desktop4:FileExplorerContextMenus>
 				</desktop4:Extension>
 
+				<com:Extension Category="windows.comServer" uap10:RuntimeBehavior="packagedClassicApp">
+					<com:ComServer>
+						<com:SurrogateServer DisplayName="Context menu verb handler">
+							<com:Class Id="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" Path="CrayonContextMenu.dll" ThreadingModel="STA"/>
+						</com:SurrogateServer>
+					</com:ComServer>
+				</com:Extension>
+
 			</Extensions>
 		</Application>
 	</Applications>
-	
+
 	<Capabilities>
 		<rescap:Capability Name="runFullTrust"/>
 	</Capabilities>
