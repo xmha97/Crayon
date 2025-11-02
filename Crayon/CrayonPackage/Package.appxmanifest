@@ -60,7 +60,7 @@
 
 				<com:Extension Category="windows.comServer">
 					<com:ComServer>
-						<com:SurrogateServer DisplayName="CrayonContextMenu">
+						<com:SurrogateServer DisplayName="Crayon.ContextMenu">
 							<com:Class Id="09E0D2D4-B928-4DCA-8FDA-69671153BB20" Path="CrayonContextMenu.dll" ThreadingModel="STA"/>
 						</com:SurrogateServer>
 					</com:ComServer>
