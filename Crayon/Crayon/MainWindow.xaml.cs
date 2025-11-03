@@ -209,36 +209,14 @@ namespace Crayon
 			e.AcceptedOperation = DataPackageOperation.Copy;
 		}
 
-        private void SelectorBar2_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+		int previousSelectedIndex;
+        System.Type pageType;
+        private void MySelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
         {
-            //SelectorBarItem selectedItem = sender.SelectedItem;
-            //int currentSelectedIndex = sender.Items.IndexOf(selectedItem);
-            //System.Type pageType;
-
-            //switch (currentSelectedIndex)
-            //{
-            //    case 0:
-            //        pageType = typeof(SamplePage1);
-            //        break;
-            //    case 1:
-            //        pageType = typeof(SamplePage2);
-            //        break;
-            //    case 2:
-            //        pageType = typeof(SamplePage3);
-            //        break;
-            //    case 3:
-            //        pageType = typeof(SamplePage4);
-            //        break;
-            //    default:
-            //        pageType = typeof(SamplePage5);
-            //        break;
-            //}
-
-            //var slideNavigationTransitionEffect = currentSelectedIndex - previousSelectedIndex > 0 ? SlideNavigationTransitionEffect.FromRight : SlideNavigationTransitionEffect.FromLeft;
-
-            //ContentFrame.Navigate(pageType, null, new SlideNavigationTransitionInfo() { Effect = slideNavigationTransitionEffect });
-
-            //previousSelectedIndex = currentSelectedIndex;
+            SelectorBarItem selectedItem = sender.SelectedItem;
+            int currentSelectedIndex = sender.Items.IndexOf(selectedItem);
+            Tab1Content.Visibility = currentSelectedIndex == 0 ? Visibility.Visible : Visibility.Collapsed;
+            Tab2Content.Visibility = currentSelectedIndex == 1 ? Visibility.Visible : Visibility.Collapsed;
         }
 
     }

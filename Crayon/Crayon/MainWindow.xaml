@@ -26,44 +26,49 @@
         </Grid>
         <StackPanel Padding="24" Spacing="20" Grid.Row="1">
             <TextBlock Text="Folder" FontSize="20" FontWeight="Bold" />
-            <SelectorBar x:Name="SelectorBar2" SelectionChanged="SelectorBar2_SelectionChanged">
-                <SelectorBarItem x:Name="SelectorBarItemPage1" Text="Color" IsSelected="True" />
-                <SelectorBarItem x:Name="SelectorBarItemPage2" Text="Icon" />
-            </SelectorBar>
 
-            <Frame x:Name="ContentFrame" IsNavigationStackEnabled="False" />
+            <StackPanel>
+                <SelectorBar x:Name="MySelectorBar"
+                 SelectionChanged="MySelectorBar_SelectionChanged">
+                    <SelectorBarItem x:Name="SelectorBarItemPage1" Icon="Edit" Text="Color" Tag="Color" IsSelected="True" />
+                    <SelectorBarItem x:Name="SelectorBarItemPage2" Icon="Favorite" Text="Icon" Tag="Icon" />
+                </SelectorBar>
 
-            <ItemsControl x:Name="ColorsList" ItemsSource="{x:Bind AvailableColors}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VariableSizedWrapGrid Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <RadioButton GroupName="Colors" Checked="Color_Checked" Margin="4" Padding="0" Background="Transparent" BorderThickness="0">
-
-                            <RadioButton.Template>
-                                <ControlTemplate TargetType="RadioButton">
-                                    <ContentPresenter />
-                                </ControlTemplate>
-                            </RadioButton.Template>
-
-                            <Ellipse x:Name="Circle"
+                <StackPanel x:Name="Tab1Content" Visibility="Visible">
+                    <ItemsControl x:Name="ColorsList" ItemsSource="{x:Bind AvailableColors}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton GroupName="Colors" Checked="Color_Checked" Margin="4" Padding="0" Background="Transparent" BorderThickness="0">
+                                    <RadioButton.Template>
+                                        <ControlTemplate TargetType="RadioButton">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </RadioButton.Template>
+                                    <Ellipse x:Name="Circle"
                        Width="32" Height="32"
                        StrokeThickness="2">
-                                <Ellipse.Fill>
-                                    <SolidColorBrush Color="{Binding Color}" />
-                                </Ellipse.Fill>
-                                <Ellipse.Stroke>
-                                    <SolidColorBrush Color="Transparent" />
-                                </Ellipse.Stroke>
-                            </Ellipse>
-                        </RadioButton>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                        <Ellipse.Fill>
+                                            <SolidColorBrush Color="{Binding Color}" />
+                                        </Ellipse.Fill>
+                                        <Ellipse.Stroke>
+                                            <SolidColorBrush Color="Transparent" />
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                </RadioButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <StackPanel x:Name="Tab2Content" Visibility="Collapsed">
+                    <TextBlock Text="N/A" Margin="10" FontSize="18"/>
+                </StackPanel>
+            </StackPanel>
 
             <TextBlock x:Name="SelectedText" Text="You've selected the color—none." />
 
