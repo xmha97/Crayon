@@ -6,9 +6,12 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Shapes;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.UI;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Crayon
 {
@@ -33,21 +36,21 @@ namespace Crayon
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows11-drive.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Windows", "drive-windows11-windows.ico"),
 					new ColorItem(Color.FromArgb(255, 255,206,60), "Yellow", "folder-windows11-yellow.ico"),
-					new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows11-dark-red.ico"),
-					new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows11-dark-orange.ico"),
-					new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows11-dark-green.ico"),
-					new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows11-dark-teal.ico"),
-					new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows11-dark-blue.ico"),
-					new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows11-dark-purple.ico"),
-					new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows11-dark-pink.ico"),
+					new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows11-darkred.ico"),
+					new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows11-darkorange.ico"),
+					new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows11-darkgreen.ico"),
+					new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows11-darkteal.ico"),
+					new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows11-darkblue.ico"),
+					new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows11-darkpurple.ico"),
+					new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows11-darkpink.ico"),
 					new ColorItem(Color.FromArgb(255, 176,183,186), "Grey", "folder-windows11-grey.ico"),
-					new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows11-light-red.ico"),
-					new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows11-light-orange.ico"),
-					new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows11-light-green.ico"),
-					new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows11-light-teal.ico"),
-					new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows11-light-blue.ico"),
-					new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows11-light-purple.ico"),
-					new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows11-light-pink.ico"),
+					new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows11-lightred.ico"),
+					new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows11-lightorange.ico"),
+					new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows11-lightgreen.ico"),
+					new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows11-lightteal.ico"),
+					new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows11-lightblue.ico"),
+					new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows11-lightpurple.ico"),
+					new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows11-lightpink.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Documents", "library-windows11-documents.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Music", "library-windows11-music.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Pictures", "library-windows11-pictures.ico"),
@@ -56,21 +59,21 @@ namespace Crayon
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows10-drive.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Windows", "drive-windows10-windows.ico"),
                     //new ColorItem(Color.FromArgb(255, 255,206,60), "Yellow", "folder-windows10-yellow.ico"),
-                    //new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows10-dark-red.ico"),
-                    //new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows10-dark-orange.ico"),
-                    //new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows10-dark-green.ico"),
-                    //new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows10-dark-teal.ico"),
-                    //new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows10-dark-blue.ico"),
-                    //new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows10-dark-purple.ico"),
-                    //new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows10-dark-pink.ico"),
+                    //new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows10-darkred.ico"),
+                    //new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows10-darkorange.ico"),
+                    //new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows10-darkgreen.ico"),
+                    //new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows10-darkteal.ico"),
+                    //new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows10-darkblue.ico"),
+                    //new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows10-darkpurple.ico"),
+                    //new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows10-darkpink.ico"),
                     //new ColorItem(Color.FromArgb(255, 176,183,186), "Grey", "folder-windows10-grey.ico"),
-                    //new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows10-light-red.ico"),
-                    //new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows10-light-orange.ico"),
-                    //new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows10-light-green.ico"),
-                    //new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows10-light-teal.ico"),
-                    //new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows10-light-blue.ico"),
-                    //new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows10-light-purple.ico"),
-                    //new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows10-light-pink.ico"),
+                    //new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows10-lightred.ico"),
+                    //new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows10-lightorange.ico"),
+                    //new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows10-lightgreen.ico"),
+                    //new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows10-lightteal.ico"),
+                    //new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows10-lightblue.ico"),
+                    //new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows10-lightpurple.ico"),
+                    //new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows10-lightpink.ico"),
                     //new ColorItem(Color.FromArgb(255, 0, 0, 0), "Documents", "library-windows10-documents.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Music", "library-windows10-music.ico"),
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Pictures", "library-windows10-pictures.ico"),
@@ -131,12 +134,21 @@ namespace Crayon
 
 		private void ApplyButton_Click(object sender, RoutedEventArgs e)
 		{
-			var selectedRadio = FindSelectedRadioButton(ColorsList);
+            MyInfoBar.IsOpen = false;
+
+            var selectedRadio = FindSelectedRadioButton(ColorsList);
 			string iconFile = string.Empty;
 			if (selectedRadio?.DataContext is ColorItem colorItem)
 			{
 				iconFile = $"{colorItem.IconPath}";
 			}
+			else
+			{
+				MyInfoBar.Title = "Error 1";
+                MyInfoBar.Message = "No Icon Selected!";
+                MyInfoBar.IsOpen = true;
+                return;
+            }
 
 			string[] cmdLine = Environment.GetCommandLineArgs();
 			string pathAddr = string.Empty;
@@ -144,44 +156,47 @@ namespace Crayon
 			{
 				pathAddr = Environment.GetCommandLineArgs()[1];
 			}
+            else
+            {
+                MyInfoBar.Title = "Error 2";
+                MyInfoBar.Message = "No Path Selected!";
+                MyInfoBar.IsOpen = true;
+				return;
+            }
+			
+			string iconPath = System.IO.Path.Combine(Package.Current.InstalledLocation.Path, "Assets", "Icons", iconFile);
+            string dskFile = System.IO.Path.Combine(pathAddr, "desktop.ini");
+            string copyPath = System.IO.Path.Combine(pathAddr, ".icon.ico");
 
-			string output = string.Empty;
+			try
+			{
+                System.IO.File.WriteAllText(dskFile, string.Format("[.ShellClassInfo]\r\nIconResource=.icon.ico,0\r\nIconFile=.icon.ico\r\nIconIndex=0\r\n"));
+                System.IO.FileAttributes attrs1 = System.IO.File.GetAttributes(dskFile);
+                attrs1 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System;
+                System.IO.File.SetAttributes(dskFile, attrs1);
 
-			if (iconFile == string.Empty)
-			{
-				output += "NoIcon\n";
-			}
-			else
-			{
-				output += $"{iconFile}\n";
-			}
+                System.IO.File.Copy(iconPath, copyPath);
+                System.IO.FileAttributes attrs2 = System.IO.File.GetAttributes(copyPath);
+                attrs2 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System;
+                System.IO.File.SetAttributes(copyPath, attrs2);
 
-			if (pathAddr == string.Empty)
+                var dirInfo = new System.IO.DirectoryInfo(pathAddr);
+                dirInfo.Attributes |= System.IO.FileAttributes.ReadOnly;
+                System.IO.Directory.SetLastWriteTime(pathAddr, DateTime.Now);
+            }
+            catch (Exception ex)
 			{
-				output += "NoAddress\n";
-			}
-			else
-			{
-				output += $"{pathAddr}\n";
-			}
-
-			string dskFile = System.IO.Path.Combine(pathAddr, "desktop.ini");
-
-			if (System.IO.File.Exists(dskFile))
-			{
-				output += System.IO.File.ReadAllText(dskFile) + "\n";
-			}
-			else
-			{
-				output += "NoFile\n";
-			}
-
-			SelectedText.Text = output;
-		}
+                MyInfoBar.Title = "Error 3";
+                MyInfoBar.Message = ex.Message;
+                MyInfoBar.IsOpen = true;
+                return;
+            }
+            Close();
+        }
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-			Close();
+            Close();
 		}
 
 		private async void Grid_Drop(object sender, DragEventArgs e)

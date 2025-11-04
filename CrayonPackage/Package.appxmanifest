@@ -17,7 +17,7 @@
 
 	<Identity Name="Ammari.Crayon"
 			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
-			  Version="1.0.4.0" />
+			  Version="1.0.24.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
@@ -25,7 +25,7 @@
 
 	<Properties>
 		<DisplayName>Crayon</DisplayName>
-		<PublisherDisplayName>Ammari</PublisherDisplayName>
+		<PublisherDisplayName>Ammari Corporation</PublisherDisplayName>
 		<Logo>Images\StoreLogo.png</Logo>
 	</Properties>
 
@@ -39,7 +39,8 @@
 	</Dependencies>
 
 	<Resources>
-		<Resource Language="x-generate"/>
+		<Resource Language="en-US"/>
+		<Resource Language="fa-IR"/>
 	</Resources>
 
 	<Applications>
@@ -64,15 +65,15 @@
 
 				<desktop9:Extension Category="windows.fileExplorerClassicContextMenuHandler">
 					<desktop9:FileExplorerClassicContextMenuHandler>
-						<desktop9:ExtensionHandler Type=".library-ms" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
-						<desktop9:ExtensionHandler Type="Directory" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+						<desktop9:ExtensionHandler Type=".library-ms" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 					</desktop9:FileExplorerClassicContextMenuHandler>
 				</desktop9:Extension>
 
 				<desktop9:Extension Category="windows.fileExplorerClassicDragDropContextMenuHandler">
 					<desktop9:FileExplorerClassicDragDropContextMenuHandler>
-						<desktop9:ExtensionHandler Type="Directory" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
-						<desktop9:ExtensionHandler Type="Drive" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						<desktop9:ExtensionHandler Type="Drive" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 					</desktop9:FileExplorerClassicDragDropContextMenuHandler>
 				</desktop9:Extension>
 
@@ -89,16 +90,22 @@
 
 				<desktop4:Extension Category="windows.fileExplorerContextMenus">
 					<desktop4:FileExplorerContextMenus>
+						<desktop5:ItemType Type="Directory">
+							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						</desktop5:ItemType>
+						<desktop5:ItemType Type="Directory\Background">
+							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						</desktop5:ItemType>
 						<desktop5:ItemType Type="*">
-							<desktop5:Verb Id="CrayonCommand" Clsid="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" />
+							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						</desktop5:ItemType>
 					</desktop4:FileExplorerContextMenus>
 				</desktop4:Extension>
-
-				<com:Extension Category="windows.comServer" uap10:RuntimeBehavior="packagedClassicApp">
+				
+				<com:Extension Category="windows.comServer">
 					<com:ComServer>
-						<com:SurrogateServer DisplayName="Context menu verb handler">
-							<com:Class Id="CE39BF9D-C943-4140-A6F6-CEFC9E07D932" Path="CrayonContextMenu.dll" ThreadingModel="STA"/>
+						<com:SurrogateServer  DisplayName="Crayon Context Menu Handler">
+							<com:Class Id="3C557AFF-6181-4BBC-937D-E2FE8844DD49" Path="CrayonContextMenu.dll" ThreadingModel="STA"/>
 						</com:SurrogateServer>
 					</com:ComServer>
 				</com:Extension>
@@ -108,7 +115,7 @@
 	</Applications>
 
 	<Capabilities>
-		<rescap:Capability Name="runFullTrust"/>
+		<rescap:Capability Name="runFullTrust" />
 	</Capabilities>
 
 </Package>
