@@ -118,12 +118,60 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>قلم‌تلوين</value>
+    <value>Crayon</value>
   </data>
   <data name="Publisher" xml:space="preserve">
-    <value>شركة عماري</value>
+    <value>Ammari Corporation</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>مغير الأيقونات</value>
+    <value>Icon Changer</value>
+  </data>
+  <data name="ColorYellow" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="ColorLightBlue" xml:space="preserve">
+    <value>Light Blue</value>
+  </data>
+  <data name="ColorLightPurple" xml:space="preserve">
+    <value>Light Purple</value>
+  </data>
+  <data name="ColorGrey" xml:space="preserve">
+    <value>Grey</value>
+  </data>
+  <data name="ColorLightRed" xml:space="preserve">
+    <value>Light Red</value>
+  </data>
+  <data name="ColorLightOrange" xml:space="preserve">
+    <value>Light Orange</value>
+  </data>
+  <data name="ColorLightGreen" xml:space="preserve">
+    <value>Light Green</value>
+  </data>
+  <data name="ColorLightTeal" xml:space="preserve">
+    <value>Light Teal</value>
+  </data>
+  <data name="ColorDarkPink" xml:space="preserve">
+    <value>Dark Pink</value>
+  </data>
+  <data name="ColorLightPink" xml:space="preserve">
+    <value>Light Pink</value>
+  </data>
+  <data name="ColorDarkRed" xml:space="preserve">
+    <value>Dark Red</value>
+  </data>
+  <data name="ColorDarkOrange" xml:space="preserve">
+    <value>Dark Orange</value>
+  </data>
+  <data name="ColorDarkGreen" xml:space="preserve">
+    <value>Dark Green</value>
+  </data>
+  <data name="ColorDarkTeal" xml:space="preserve">
+    <value>Dark Teal</value>
+  </data>
+  <data name="ColorDarkBlue" xml:space="preserve">
+    <value>Dark Blue</value>
+  </data>
+  <data name="ColorDarkPurple" xml:space="preserve">
+    <value>Dark Purple</value>
   </data>
 </root>

@@ -11,13 +11,17 @@
 		<UseWinUI>true</UseWinUI>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<Manifest Include="$(ApplicationManifest)" />
+	  <Compile Remove="Strings\en-US\**" />
+	  <Content Remove="Strings\en-US\**" />
+	  <EmbeddedResource Remove="Strings\en-US\**" />
+	  <None Remove="Strings\en-US\**" />
+	  <Page Remove="Strings\en-US\**" />
+	  <PRIResource Remove="Strings\en-US\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="Strings\en-US\Resources.resw" />
+		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
 	<ItemGroup>

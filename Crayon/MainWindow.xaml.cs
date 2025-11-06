@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Shapes;
 using Microsoft.Windows.ApplicationModel.Resources;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel;
@@ -19,7 +20,7 @@ namespace Crayon
     public sealed partial class MainWindow : Window
 	{
         private ResourceLoader rl = new ResourceLoader();
-
+        public ObservableCollection<ColorItem> AvailableColors { get; } = new ObservableCollection<ColorItem>();
         const int SHCNE_ASSOCCHANGED = 0x08000000;
         const int SHCNE_UPDATEDIR = 0x00001000;
         const uint SHCNF_PATHW = 0x0005;
@@ -65,56 +66,6 @@ namespace Crayon
             }
 		}
 
-		public List<ColorItem> AvailableColors { get; } = new()
-				{
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows11-drive.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Windows", "drive-windows11-windows.ico"),
-					new ColorItem(Color.FromArgb(255, 255,206,60), "Yellow", "folder-windows11-yellow.ico", "folder-kde25-yellow.svg"),
-					new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows11-darkred.ico", "folder-kde25-darkred.svg"),
-					new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows11-darkorange.ico", "folder-kde25-darkorange.svg"),
-					new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows11-darkgreen.ico", "folder-kde25-darkgreen.svg"),
-					new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows11-darkteal.ico", "folder-kde25-darkteal.svg"),
-					new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows11-darkblue.ico", "folder-kde25-darkblue.svg"),
-					new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows11-darkpurple.ico", "folder-kde25-darkpurple.svg"),
-					new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows11-darkpink.ico", "folder-kde25-darkpink.svg"),
-					new ColorItem(Color.FromArgb(255, 176,183,186), "Grey", "folder-windows11-grey.ico", "folder-kde25-grey.svg"),
-					new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows11-lightred.ico", "folder-kde25-lightred.svg"),
-					new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows11-lightorange.ico", "folder-kde25-lightorange.svg"),
-					new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows11-lightgreen.ico", "folder-kde25-lightgreen.svg"),
-					new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows11-lightteal.ico", "folder-kde25-lightteal.svg"),
-					new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows11-lightblue.ico", "folder-kde25-lightblue.svg"),
-					new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows11-lightpurple.ico", "folder-kde25-lightpurple.svg"),
-					new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows11-lightpink.ico", "folder-kde25-lightpink.svg"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Documents", "library-windows11-documents.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Music", "library-windows11-music.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Pictures", "library-windows11-pictures.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "TV", "library-windows11-tv.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows11-videos.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows10-drive.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Windows", "drive-windows10-windows.ico"),
-                    //new ColorItem(Color.FromArgb(255, 255,206,60), "Yellow", "folder-windows10-yellow.ico"),
-                    //new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows10-darkred.ico"),
-                    //new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows10-darkorange.ico"),
-                    //new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows10-darkgreen.ico"),
-                    //new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows10-darkteal.ico"),
-                    //new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows10-darkblue.ico"),
-                    //new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows10-darkpurple.ico"),
-                    //new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows10-darkpink.ico"),
-                    //new ColorItem(Color.FromArgb(255, 176,183,186), "Grey", "folder-windows10-grey.ico"),
-                    //new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows10-lightred.ico"),
-                    //new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows10-lightorange.ico"),
-                    //new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows10-lightgreen.ico"),
-                    //new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows10-lightteal.ico"),
-                    //new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows10-lightblue.ico"),
-                    //new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows10-lightpurple.ico"),
-                    //new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows10-lightpink.ico"),
-                    //new ColorItem(Color.FromArgb(255, 0, 0, 0), "Documents", "library-windows10-documents.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Music", "library-windows10-music.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Pictures", "library-windows10-pictures.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "TV", "library-windows10-tv.ico"),
-					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows10-videos.ico")
-                };
-
         public MainWindow()
 		{
 			this.InitializeComponent();
@@ -122,9 +73,56 @@ namespace Crayon
 			ExtendsContentIntoTitleBar = true;
 			this.SetTitleBar(AppTitleBar);
             this.Title = rl.GetString("AppName");
+
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows11-drive.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Windows", "drive-windows11-windows.ico"),
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 255, 206, 60), rl.GetString("ColorYellow"), "folder-windows11-yellow.ico", "folder-kde25-yellow.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 228, 60, 41), rl.GetString("ColorDarkRed"), "folder-windows11-darkred.ico", "folder-kde25-darkred.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 237, 111, 15), rl.GetString("ColorDarkOrange"), "folder-windows11-darkorange.ico", "folder-kde25-darkorange.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 62, 158, 74), rl.GetString("ColorDarkGreen"), "folder-windows11-darkgreen.ico", "folder-kde25-darkgreen.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 39, 147, 142), rl.GetString("ColorDarkTeal"), "folder-windows11-darkteal.ico", "folder-kde25-darkteal.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 31, 132, 208), rl.GetString("ColorDarkBlue"), "folder-windows11-darkblue.ico", "folder-kde25-darkblue.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 153, 96, 198), rl.GetString("ColorDarkPurple"), "folder-windows11-darkpurple.ico", "folder-kde25-darkpurple.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 206, 85, 185), rl.GetString("ColorDarkPink"), "folder-windows11-darkpink.ico", "folder-kde25-darkpink.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 176, 183, 186), rl.GetString("ColorGrey"), "folder-windows11-grey.ico", "folder-kde25-grey.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 255, 188, 178), rl.GetString("ColorLightRed"), "folder-windows11-lightred.ico", "folder-kde25-lightred.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 255, 191, 132), rl.GetString("ColorLightOrange"), "folder-windows11-lightorange.ico", "folder-kde25-lightorange.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 142, 210, 144), rl.GetString("ColorLightGreen"), "folder-windows11-lightgreen.ico", "folder-kde25-lightgreen.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 122, 209, 205), rl.GetString("ColorLightTeal"), "folder-windows11-lightteal.ico", "folder-kde25-lightteal.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 134, 200, 247), rl.GetString("ColorLightBlue"), "folder-windows11-lightblue.ico", "folder-kde25-lightblue.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 212, 175, 246), rl.GetString("ColorLightPurple"), "folder-windows11-lightpurple.ico", "folder-kde25-lightpurple.svg"));
+            AvailableColors.Add(new ColorItem(Color.FromArgb(255, 247, 170, 231), rl.GetString("ColorLightPink"), "folder-windows11-lightpink.ico", "folder-kde25-lightpink.svg"));
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Documents", "library-windows11-documents.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Music", "library-windows11-music.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Pictures", "library-windows11-pictures.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "TV", "library-windows11-tv.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows11-videos.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows10-drive.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Windows", "drive-windows10-windows.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 255,206,60), "Yellow", "folder-windows10-yellow.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 228,60,41), "Dark Red", "folder-windows10-darkred.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 237,111,15), "Dark Orange", "folder-windows10-darkorange.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 62,158,74), "Dark Green", "folder-windows10-darkgreen.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 39,147,142), "Dark Teal", "folder-windows10-darkteal.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 31,132,208), "Dark Blue", "folder-windows10-darkblue.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 153,96,198), "Dark Purple", "folder-windows10-darkpurple.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 206,85,185), "Dark Pink", "folder-windows10-darkpink.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 176,183,186), "Grey", "folder-windows10-grey.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 255,188,178), "Light Red", "folder-windows10-lightred.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 255,191,132), "Light Orange", "folder-windows10-lightorange.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 142,210,144), "Light Green", "folder-windows10-lightgreen.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 122,209,205), "Light Teal", "folder-windows10-lightteal.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 134,200,247), "Light Blue", "folder-windows10-lightblue.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 212,175,246), "Light Purple", "folder-windows10-lightpurple.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 247,170,231), "Light Pink", "folder-windows10-lightpink.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Documents", "library-windows10-documents.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Music", "library-windows10-music.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Pictures", "library-windows10-pictures.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "TV", "library-windows10-tv.ico"),
+            //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows10-videos.ico")
         }
 
-		private void Color_Checked(object sender, RoutedEventArgs e)
+        private void Color_Checked(object sender, RoutedEventArgs e)
 		{
 			if (sender is RadioButton rb && rb.DataContext is ColorItem item)
 			{

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "CrayonPackage", "CrayonPackage\CrayonPackage.wapproj", "{9B5AADEB-9F11-441D-9286-FB8959396D39}"
+	ProjectSection(ProjectDependencies) = postProject
+		{585A1606-DC66-49BA-BFFB-E6F0B63A66BF} = {585A1606-DC66-49BA-BFFB-E6F0B63A66BF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crayon", "Crayon\Crayon.csproj", "{6D73900C-0865-4812-A6B4-D9FB27BC6CA1}"
 EndProject

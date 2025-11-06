@@ -118,12 +118,60 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>مدادشمعی</value>
+    <value>قلم‌تلوين</value>
   </data>
   <data name="Publisher" xml:space="preserve">
-    <value>شرکت عماری</value>
+    <value>شركة عماري</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>تغییردهنده‌ی نقشک‌ها</value>
+    <value>مغير الأيقونات</value>
+  </data>
+  <data name="ColorYellow" xml:space="preserve">
+    <value>أصفر</value>
+  </data>
+  <data name="ColorLightBlue" xml:space="preserve">
+    <value>أزرق فاتح</value>
+  </data>
+  <data name="ColorLightPurple" xml:space="preserve">
+    <value>بنفسجي فاتح</value>
+  </data>
+  <data name="ColorGrey" xml:space="preserve">
+    <value>رمادي</value>
+  </data>
+  <data name="ColorLightRed" xml:space="preserve">
+    <value>أحمر فاتح</value>
+  </data>
+  <data name="ColorLightOrange" xml:space="preserve">
+    <value>برتقالي فاتح</value>
+  </data>
+  <data name="ColorLightGreen" xml:space="preserve">
+    <value>أخضر فاتح</value>
+  </data>
+  <data name="ColorLightTeal" xml:space="preserve">
+    <value>أخضرمزرق فاتح</value>
+  </data>
+  <data name="ColorDarkPink" xml:space="preserve">
+    <value>وردي داكن</value>
+  </data>
+  <data name="ColorLightPink" xml:space="preserve">
+    <value>وردي فاتح</value>
+  </data>
+  <data name="ColorDarkRed" xml:space="preserve">
+    <value>أحمر داكن</value>
+  </data>
+  <data name="ColorDarkOrange" xml:space="preserve">
+    <value>برتقالي داكن</value>
+  </data>
+  <data name="ColorDarkGreen" xml:space="preserve">
+    <value>أخضر داكن</value>
+  </data>
+  <data name="ColorDarkTeal" xml:space="preserve">
+    <value>أخضرمزرق داكن</value>
+  </data>
+  <data name="ColorDarkBlue" xml:space="preserve">
+    <value>أزرق داكن</value>
+  </data>
+  <data name="ColorDarkPurple" xml:space="preserve">
+    <value>بنفسجي داكن</value>
   </data>
 </root>
