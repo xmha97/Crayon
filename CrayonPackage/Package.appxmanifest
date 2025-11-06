@@ -6,26 +6,29 @@
 	xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2"
 	xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
     xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+    xmlns:uap15="http://schemas.microsoft.com/appx/manifest/uap/windows10/15"
 	xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
 	xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
 	xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
 	xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
 	xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
 	xmlns:desktop9="http://schemas.microsoft.com/appx/manifest/desktop/windows10/9"
+	xmlns:desktop10="http://schemas.microsoft.com/appx/manifest/desktop/windows10/10"
 	xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-	IgnorableNamespaces="uap uap2 uap3 uap10 rescap com desktop desktop4 desktop5 desktop9 mp">
+	IgnorableNamespaces="uap uap2 uap3 uap10 uap15 rescap com desktop desktop4 desktop5 desktop9 desktop10 mp">
 
 	<Identity Name="Ammari.Crayon"
 			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
-			  Version="1.0.42.0" />
+			  Version="1.0.45.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
 		PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
 	<Properties>
-		<DisplayName>Crayon</DisplayName>
+		<DisplayName>ms-resource:PackageDisplayName</DisplayName>
 		<PublisherDisplayName>Ammari Corporation</PublisherDisplayName>
+		<Description>Crayon App</Description>
 		<Logo>Images\StoreLogo.png</Logo>
 	</Properties>
 
@@ -99,6 +102,9 @@
 						<desktop5:ItemType Type="*">
 							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						</desktop5:ItemType>
+						<desktop10:ItemType Type="Drive">
+							<desktop10:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						</desktop10:ItemType>
 					</desktop4:FileExplorerContextMenus>
 				</desktop4:Extension>
 				
