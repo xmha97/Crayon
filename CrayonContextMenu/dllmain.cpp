@@ -223,7 +223,7 @@ class __declspec(uuid("3C557AFF-6181-4BBC-937D-E2FE8844DD49")) GrepWinExplorerCo
 public:
     const wchar_t* Title(IShellItemArray*) override
     {
-        return L"Crayon";
+        return L"Change Icon...";
     }
 
     EXPCMDSTATE State(_In_opt_ IShellItemArray*) override

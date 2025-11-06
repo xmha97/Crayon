@@ -4,21 +4,22 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Shapes;
+using Microsoft.Windows.ApplicationModel.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.UI;
-using static Crayon.MainWindow;
 
 namespace Crayon
 {
     public sealed partial class MainWindow : Window
 	{
+        private ResourceLoader rl = new ResourceLoader();
+
         const int SHCNE_ASSOCCHANGED = 0x08000000;
         const int SHCNE_UPDATEDIR = 0x00001000;
         const uint SHCNF_PATHW = 0x0005;
@@ -114,13 +115,14 @@ namespace Crayon
 					//new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows10-videos.ico")
                 };
 
-		public MainWindow()
+        public MainWindow()
 		{
 			this.InitializeComponent();
 
 			ExtendsContentIntoTitleBar = true;
 			this.SetTitleBar(AppTitleBar);
-		}
+            this.Title = rl.GetString("AppName");
+        }
 
 		private void Color_Checked(object sender, RoutedEventArgs e)
 		{
@@ -273,32 +275,7 @@ namespace Crayon
 		private void ClearButton_Click(object sender, RoutedEventArgs e)
 		{
             Close();
-		}
-
-		private async void Grid_Drop(object sender, DragEventArgs e)
-		{
-			// Check if the dropped data contains files
-			if (e.DataView.Contains(StandardDataFormats.StorageItems))
-			{
-				// Get the file(s) from the DataPackage
-				var items = await e.DataView.GetStorageItemsAsync();
-				if (items.Count > 0)
-				{
-					// Display the first file's name
-					var storageFile = items[0] as StorageFile;
-					if (storageFile != null)
-					{
-						SelectedText.Text = $"File: {storageFile.Name}";
-					}
-				}
-			}
-		}
-
-		private void Grid_DragOver(object sender, DragEventArgs e)
-		{
-			// This is not being called
-			e.AcceptedOperation = DataPackageOperation.Copy;
-		}
+        }
 
     }
 }

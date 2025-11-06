@@ -19,16 +19,16 @@
 
 	<Identity Name="Ammari.Crayon"
 			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
-			  Version="1.0.45.0" />
+			  Version="1.0.55.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
 		PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
 	<Properties>
-		<DisplayName>ms-resource:PackageDisplayName</DisplayName>
-		<PublisherDisplayName>Ammari Corporation</PublisherDisplayName>
-		<Description>Crayon App</Description>
+		<DisplayName>ms-resource:AppName</DisplayName>
+		<PublisherDisplayName>ms-resource:Publisher</PublisherDisplayName>
+		<Description>ms-resource:AppDescription</Description>
 		<Logo>Images\StoreLogo.png</Logo>
 	</Properties>
 
@@ -44,6 +44,7 @@
 	<Resources>
 		<Resource Language="en-US"/>
 		<Resource Language="fa-IR"/>
+		<Resource Language="ar-AE"/>
 	</Resources>
 
 	<Applications>
@@ -51,12 +52,12 @@
 					 Executable="$targetnametoken$.exe"
 					 EntryPoint="$targetentrypoint$">
 			<uap:VisualElements
-				DisplayName="Crayon"
-				Description="Crayon App"
+				DisplayName="ms-resource:AppName"
+				Description="ms-resource:AppDescription"
 				BackgroundColor="transparent"
 				Square150x150Logo="Images\Square150x150Logo.png"
 				Square44x44Logo="Images\Square44x44Logo.png">
-				<uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" ShortName="Crayon" Square71x71Logo="Images\Square71x71Logo.png" Square310x310Logo="Images\Square310x310Logo.png">
+				<uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" ShortName="ms-resource:AppName" Square71x71Logo="Images\Square71x71Logo.png" Square310x310Logo="Images\Square310x310Logo.png">
 					<uap:ShowNameOnTiles>
 						<uap:ShowOn Tile="square310x310Logo"/>
 					</uap:ShowNameOnTiles>
@@ -65,21 +66,6 @@
 				<uap:LockScreen BadgeLogo="Images\BadgeLogo.png" Notification="badgeAndTileText"/>
 			</uap:VisualElements>
 			<Extensions>
-
-				<desktop9:Extension Category="windows.fileExplorerClassicContextMenuHandler">
-					<desktop9:FileExplorerClassicContextMenuHandler>
-						<desktop9:ExtensionHandler Type=".library-ms" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-					</desktop9:FileExplorerClassicContextMenuHandler>
-				</desktop9:Extension>
-
-				<desktop9:Extension Category="windows.fileExplorerClassicDragDropContextMenuHandler">
-					<desktop9:FileExplorerClassicDragDropContextMenuHandler>
-						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-						<desktop9:ExtensionHandler Type="Drive" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-					</desktop9:FileExplorerClassicDragDropContextMenuHandler>
-				</desktop9:Extension>
-
 
 				<uap:Extension Category="windows.protocol">
 					<uap:Protocol Name="crayon"/>
@@ -96,12 +82,6 @@
 						<desktop5:ItemType Type="Directory">
 							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						</desktop5:ItemType>
-						<desktop5:ItemType Type="Directory\Background">
-							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-						</desktop5:ItemType>
-						<desktop5:ItemType Type="*">
-							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-						</desktop5:ItemType>
 						<desktop10:ItemType Type="Drive">
 							<desktop10:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						</desktop10:ItemType>
@@ -110,7 +90,7 @@
 				
 				<com:Extension Category="windows.comServer">
 					<com:ComServer>
-						<com:SurrogateServer  DisplayName="Crayon Context Menu Handler">
+						<com:SurrogateServer DisplayName="Crayon Context Menu Handler">
 							<com:Class Id="3C557AFF-6181-4BBC-937D-E2FE8844DD49" Path="CrayonContextMenu.dll" ThreadingModel="STA"/>
 						</com:SurrogateServer>
 					</com:ComServer>
