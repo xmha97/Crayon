@@ -120,4 +120,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="PackageDisplayName" xml:space="preserve">
+    <value>Crayon</value>
+  </data>
 </root>
