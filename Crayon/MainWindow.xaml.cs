@@ -239,9 +239,9 @@ namespace Crayon
                 {
                     System.IO.File.Delete(hdnFile);
                 }
-                System.IO.File.WriteAllText(hdnFile, string.Format("desktop.ini"));
+                System.IO.File.WriteAllText(hdnFile, string.Format("desktop.ini\r\nautorun.inf"));
                 System.IO.FileAttributes attrs3 = System.IO.File.GetAttributes(hdnFile);
-                attrs3 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System | System.IO.FileAttributes.Archive;
+                attrs3 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System;
                 System.IO.File.SetAttributes(hdnFile, attrs3);
 
                 string dirFile = System.IO.Path.Combine(pathAddr, ".directory");
@@ -251,9 +251,18 @@ namespace Crayon
                 }
                 System.IO.File.WriteAllText(dirFile, string.Format("[Desktop Entry]\r\nIcon=.icon.svg\r\nName=Folder\r\nComment=Custom Folder\r\n\r\n[Dolphin]\r\nViewMode=1\r\n"));
                 System.IO.FileAttributes attrs5 = System.IO.File.GetAttributes(dirFile);
-                attrs5 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System | System.IO.FileAttributes.Archive;
+                attrs5 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System;
                 System.IO.File.SetAttributes(dirFile, attrs5);
 
+                string arFile = System.IO.Path.Combine(pathAddr, "autorun.inf");
+                if (System.IO.File.Exists(arFile))
+                {
+                    System.IO.File.Delete(arFile);
+                }
+                System.IO.File.WriteAllText(arFile, string.Format("[autorun]\r\nicon=.icon.ico,0\r\nlabel=Folder"));
+                System.IO.FileAttributes attrs6 = System.IO.File.GetAttributes(arFile);
+                attrs6 |= System.IO.FileAttributes.Hidden | System.IO.FileAttributes.System;
+                System.IO.File.SetAttributes(arFile, attrs6);
 
                 var dirInfo = new System.IO.DirectoryInfo(pathAddr);
                 dirInfo.Attributes |= System.IO.FileAttributes.ReadOnly;
