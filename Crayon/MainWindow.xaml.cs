@@ -12,8 +12,10 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Graphics;
 using Windows.Storage;
 using Windows.UI;
+using Microsoft.UI.Windowing;
 
 namespace Crayon
 {
@@ -35,6 +37,42 @@ namespace Crayon
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         static extern IntPtr SendMessageTimeout(IntPtr hWnd, int Msg, IntPtr wParam, string lParam,
             uint fuFlags, uint uTimeout, out IntPtr lpdwResult);
+
+
+        private const int WM_GETMINMAXINFO = 0x0024;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int x;
+            public int y;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MINMAXINFO
+        {
+            public POINT ptReserved;
+            public POINT ptMaxSize;
+            public POINT ptMaxPosition;
+            public POINT ptMinTrackSize;
+            public POINT ptMaxTrackSize;
+        }
+
+        [DllImport("comctl32.dll", SetLastError = true)]
+        public static extern bool SetWindowSubclass(IntPtr hWnd, SubclassProc pfnSubclass, uint uIdSubclass, IntPtr dwRefData);
+
+        [DllImport("comctl32.dll", SetLastError = true)]
+        public static extern bool RemoveWindowSubclass(IntPtr hWnd, SubclassProc pfnSubclass, uint uIdSubclass);
+
+        [DllImport("comctl32.dll", SetLastError = true)]
+        public static extern IntPtr DefSubclassProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
+
+        // 🔹 اینجا public شده تا ارور برطرف شه
+        public delegate IntPtr SubclassProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData);
+
+        private readonly int minWidth = 862;
+        private readonly int minHeight = 529;
+
 
         public static void RefreshFolder(string folderPath)
         {
@@ -70,7 +108,14 @@ namespace Crayon
 		{
 			this.InitializeComponent();
 
-			ExtendsContentIntoTitleBar = true;
+            IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            SetWindowSubclass(hwnd, WndProc, 0, IntPtr.Zero);
+
+            var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
+            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+            appWindow.Resize(new SizeInt32(minWidth, minHeight));
+
+            ExtendsContentIntoTitleBar = true;
 			this.SetTitleBar(AppTitleBar);
             this.Title = rl.GetString("AppName");
 
@@ -122,6 +167,22 @@ namespace Crayon
             //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows10-videos.ico")
         }
 
+        private IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData)
+        {
+            switch (msg)
+            {
+                case WM_GETMINMAXINFO:
+                    unsafe
+                    {
+                        MINMAXINFO* info = (MINMAXINFO*)lParam;
+                        info->ptMinTrackSize.x = minWidth;
+                        info->ptMinTrackSize.y = minHeight;
+                    }
+                    break;
+            }
+            return DefSubclassProc(hWnd, msg, wParam, lParam);
+        }
+
         private void Color_Checked(object sender, RoutedEventArgs e)
 		{
 			if (sender is RadioButton rb && rb.DataContext is ColorItem item)
@@ -132,7 +193,7 @@ namespace Crayon
 
         }
 
-		private RadioButton FindSelectedRadioButton(ItemsControl itemsControl)
+        private RadioButton FindSelectedRadioButton(ItemsControl itemsControl)
 		{
 			foreach (var item in itemsControl.Items)
 			{
