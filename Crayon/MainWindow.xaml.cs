@@ -38,7 +38,6 @@ namespace Crayon
         static extern IntPtr SendMessageTimeout(IntPtr hWnd, int Msg, IntPtr wParam, string lParam,
             uint fuFlags, uint uTimeout, out IntPtr lpdwResult);
 
-
         private const int WM_GETMINMAXINFO = 0x0024;
 
         [StructLayout(LayoutKind.Sequential)]
@@ -67,7 +66,6 @@ namespace Crayon
         [DllImport("comctl32.dll", SetLastError = true)]
         public static extern IntPtr DefSubclassProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
 
-        // 🔹 اینجا public شده تا ارور برطرف شه
         public delegate IntPtr SubclassProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData);
 
         private readonly int minWidth = 862;
@@ -104,16 +102,22 @@ namespace Crayon
             }
 		}
 
+        private IntPtr _hwnd;
+        private SubclassProc _subclassDelegate;
+
         public MainWindow()
 		{
-			this.InitializeComponent();
+            this.InitializeComponent();
 
-            IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            SetWindowSubclass(hwnd, WndProc, 0, IntPtr.Zero);
+            _hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            _subclassDelegate = new SubclassProc(WndProc);
+            SetWindowSubclass(_hwnd, _subclassDelegate, 0, IntPtr.Zero);
 
-            var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
+            var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(_hwnd);
             AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
             appWindow.Resize(new SizeInt32(minWidth, minHeight));
+
+            this.Closed += (_, _) => RemoveWindowSubclass(_hwnd, _subclassDelegate, 0);
 
             ExtendsContentIntoTitleBar = true;
 			this.SetTitleBar(AppTitleBar);
@@ -169,17 +173,16 @@ namespace Crayon
 
         private IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData)
         {
-            switch (msg)
+            if (msg == WM_GETMINMAXINFO && lParam != IntPtr.Zero)
             {
-                case WM_GETMINMAXINFO:
-                    unsafe
-                    {
-                        MINMAXINFO* info = (MINMAXINFO*)lParam;
-                        info->ptMinTrackSize.x = minWidth;
-                        info->ptMinTrackSize.y = minHeight;
-                    }
-                    break;
+                unsafe
+                {
+                    MINMAXINFO* info = (MINMAXINFO*)lParam;
+                    info->ptMinTrackSize.x = minWidth;
+                    info->ptMinTrackSize.y = minHeight;
+                }
             }
+
             return DefSubclassProc(hWnd, msg, wParam, lParam);
         }
 
