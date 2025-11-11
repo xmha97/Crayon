@@ -1,4 +1,4 @@
-<img src="Crayon.svg" alt="Crayon" height="64">
+<img src="Docs/crayon.svg" alt="Crayon" height="64">
 
 # Crayon
 

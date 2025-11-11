@@ -178,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -194,6 +195,9 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="compatibility.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CrayonContextMenu.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

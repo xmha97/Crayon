@@ -15,8 +15,8 @@
     </application>
   </compatibility>
   <msix xmlns="urn:schemas-microsoft-com:msix.v1"
-        publisher="E=tortoisesvn@gmail.com, CN=&quot;Open Source Developer, Stefan KUENG&quot;, O=Open Source Developer, L=Altstätten, C=CH"
+        publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
         packageName="7BE7C3C4-6740-4AB4-9C5B-DD64067515BF"
-        applicationId="grepWin"
+        applicationId="Crayon"
   />
 </assembly>

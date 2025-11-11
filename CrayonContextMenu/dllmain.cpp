@@ -223,7 +223,7 @@ class __declspec(uuid("3C557AFF-6181-4BBC-937D-E2FE8844DD49")) GrepWinExplorerCo
 public:
     const wchar_t* Title(IShellItemArray*) override
     {
-        return L"Change Icon...";
+        return L"Customize";
     }
 
     EXPCMDSTATE State(_In_opt_ IShellItemArray*) override
@@ -255,7 +255,7 @@ public:
     IFACEMETHODIMP GetIcon(_In_opt_ IShellItemArray*, _Outptr_result_nullonfailure_ PWSTR* icon) override
     {
         auto bpPath = GetModuleDir(hDll);
-        bpPath += L"\\Crayon\\Crayon.exe,0";
+        bpPath += L"\\CrayonContextMenu.dll,3";
         auto iconPath = wil::make_cotaskmem_string_nothrow(bpPath.c_str());
         RETURN_IF_NULL_ALLOC(iconPath);
         *icon = iconPath.release();
@@ -267,7 +267,7 @@ public:
         try
         {
             auto gwPath = GetModuleDir(hDll);
-            gwPath += L"\\Crayon\\Crayon.exe";
+            gwPath += L"\\CrayonApp\\Crayon.exe";
 
             if (selection)
             {
