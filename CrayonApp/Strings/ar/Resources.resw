@@ -121,10 +121,10 @@
     <value>قلم‌تلوين</value>
   </data>
   <data name="PublisherDisplayName" xml:space="preserve">
-    <value>شركة عماري</value>
+    <value>شركة عمّاري</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>مغير الأيقونات</value>
+    <value>مغير أيقونات المجلدات ومحركات الأقراص</value>
   </data>
   <data name="ColorYellow" xml:space="preserve">
     <value>أصفر</value>

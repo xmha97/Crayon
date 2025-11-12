@@ -118,60 +118,60 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Crayon</value>
+    <value>Lápiz de Cera</value>
   </data>
   <data name="PublisherDisplayName" xml:space="preserve">
-    <value>Ammari Corporation</value>
+    <value>Corporación Ammari</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Folder and drive icon changer</value>
+    <value>Cambiador de iconos de carpetas y unidades</value>
   </data>
   <data name="ColorYellow" xml:space="preserve">
-    <value>Yellow</value>
+    <value>Amarillo</value>
   </data>
   <data name="ColorLightBlue" xml:space="preserve">
-    <value>Light Blue</value>
+    <value>Azul claro</value>
   </data>
   <data name="ColorLightPurple" xml:space="preserve">
-    <value>Light Purple</value>
+    <value>Púrpura claro</value>
   </data>
   <data name="ColorGrey" xml:space="preserve">
-    <value>Grey</value>
+    <value>Gris</value>
   </data>
   <data name="ColorLightRed" xml:space="preserve">
-    <value>Light Red</value>
+    <value>Rojo claro</value>
   </data>
   <data name="ColorLightOrange" xml:space="preserve">
-    <value>Light Orange</value>
+    <value>Naranja claro</value>
   </data>
   <data name="ColorLightGreen" xml:space="preserve">
-    <value>Light Green</value>
+    <value>Verde claro</value>
   </data>
   <data name="ColorLightTeal" xml:space="preserve">
-    <value>Light Teal</value>
+    <value>Verde azulado claro</value>
   </data>
   <data name="ColorDarkPink" xml:space="preserve">
-    <value>Dark Pink</value>
+    <value>Rosa oscuro</value>
   </data>
   <data name="ColorLightPink" xml:space="preserve">
-    <value>Light Pink</value>
+    <value>Rosa claro</value>
   </data>
   <data name="ColorDarkRed" xml:space="preserve">
-    <value>Dark Red</value>
+    <value>Rojo oscuro</value>
   </data>
   <data name="ColorDarkOrange" xml:space="preserve">
-    <value>Dark Orange</value>
+    <value>Naranja oscuro</value>
   </data>
   <data name="ColorDarkGreen" xml:space="preserve">
-    <value>Dark Green</value>
+    <value>Verde oscuro</value>
   </data>
   <data name="ColorDarkTeal" xml:space="preserve">
-    <value>Dark Teal</value>
+    <value>Verde azulado oscuro</value>
   </data>
   <data name="ColorDarkBlue" xml:space="preserve">
-    <value>Dark Blue</value>
+    <value>Azul oscuro</value>
   </data>
   <data name="ColorDarkPurple" xml:space="preserve">
-    <value>Dark Purple</value>
+    <value>Púrpura oscuro</value>
   </data>
 </root>

@@ -118,60 +118,60 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Crayon</value>
+    <value>Восковой мелок</value>
   </data>
   <data name="PublisherDisplayName" xml:space="preserve">
-    <value>Ammari Corporation</value>
+    <value>Корпорация Аммари</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Folder and drive icon changer</value>
+    <value>Программа для смены значков папок и дисков</value>
   </data>
   <data name="ColorYellow" xml:space="preserve">
-    <value>Yellow</value>
+    <value>Желтый</value>
   </data>
   <data name="ColorLightBlue" xml:space="preserve">
-    <value>Light Blue</value>
+    <value>Светло-синий</value>
   </data>
   <data name="ColorLightPurple" xml:space="preserve">
-    <value>Light Purple</value>
+    <value>Светло-фиолетовый</value>
   </data>
   <data name="ColorGrey" xml:space="preserve">
-    <value>Grey</value>
+    <value>Серый</value>
   </data>
   <data name="ColorLightRed" xml:space="preserve">
-    <value>Light Red</value>
+    <value>Светло-красный</value>
   </data>
   <data name="ColorLightOrange" xml:space="preserve">
-    <value>Light Orange</value>
+    <value>Светло-оранжевый</value>
   </data>
   <data name="ColorLightGreen" xml:space="preserve">
-    <value>Light Green</value>
+    <value>Светло-зеленый</value>
   </data>
   <data name="ColorLightTeal" xml:space="preserve">
-    <value>Light Teal</value>
+    <value>Светло-бирюзовый</value>
   </data>
   <data name="ColorDarkPink" xml:space="preserve">
-    <value>Dark Pink</value>
+    <value>Темно-розовый</value>
   </data>
   <data name="ColorLightPink" xml:space="preserve">
-    <value>Light Pink</value>
+    <value>Светло-розовый</value>
   </data>
   <data name="ColorDarkRed" xml:space="preserve">
-    <value>Dark Red</value>
+    <value>Темно-красный</value>
   </data>
   <data name="ColorDarkOrange" xml:space="preserve">
-    <value>Dark Orange</value>
+    <value>Темно-оранжевый</value>
   </data>
   <data name="ColorDarkGreen" xml:space="preserve">
-    <value>Dark Green</value>
+    <value>Темно-зеленый</value>
   </data>
   <data name="ColorDarkTeal" xml:space="preserve">
-    <value>Dark Teal</value>
+    <value>Темно-бирюзовый</value>
   </data>
   <data name="ColorDarkBlue" xml:space="preserve">
-    <value>Dark Blue</value>
+    <value>Темно-синий</value>
   </data>
   <data name="ColorDarkPurple" xml:space="preserve">
-    <value>Dark Purple</value>
+    <value>Темно-фиолетовый</value>
   </data>
 </root>
