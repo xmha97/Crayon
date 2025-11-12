@@ -19,7 +19,7 @@
 
 	<Identity Name="Ammari.Crayon"
 			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
-			  Version="1.0.110.0" />
+			  Version="1.0.117.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
@@ -42,14 +42,19 @@
 	</Dependencies>
 
 	<Resources>
-		<Resource Language="en"/>
 		<Resource Language="ar"/>
+		<Resource Language="bn"/>
 		<Resource Language="de"/>
+		<Resource Language="en"/>
 		<Resource Language="es"/>
 		<Resource Language="fa"/>
 		<Resource Language="fr"/>
+		<Resource Language="hi"/>
+		<Resource Language="pt"/>
 		<Resource Language="ru"/>
-		<Resource Language="zh"/>
+		<Resource Language="tr"/>
+		<Resource Language="ur"/>
+		<Resource Language="zh-hans"/>
 	</Resources>
 
 	<Applications>
