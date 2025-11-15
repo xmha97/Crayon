@@ -19,7 +19,7 @@
 
 	<Identity Name="Ammari.Crayon"
 			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
-			  Version="1.0.117.0" />
+			  Version="1.0.167.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
@@ -114,12 +114,27 @@
 						
 					</desktop4:FileExplorerContextMenus>
 				</desktop4:Extension>
-				
+
+				<desktop9:Extension Category="windows.fileExplorerClassicContextMenuHandler">
+					<desktop9:FileExplorerClassicContextMenuHandler>
+						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						<desktop9:ExtensionHandler Type="Drive" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+					</desktop9:FileExplorerClassicContextMenuHandler>
+				</desktop9:Extension>
+
+				<desktop9:Extension Category="windows.fileExplorerClassicDragDropContextMenuHandler">
+					<desktop9:FileExplorerClassicDragDropContextMenuHandler>
+						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+						<desktop9:ExtensionHandler Type="Drive" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
+    
+					</desktop9:FileExplorerClassicDragDropContextMenuHandler>
+				</desktop9:Extension>
+
 				<com:Extension Category="windows.comServer">
 					<com:ComServer>
 						<com:SurrogateServer DisplayName="Crayon Context Menu Handler">
 							<com:Class Id="3C557AFF-6181-4BBC-937D-E2FE8844DD49"
-									   Path="CrayonContextMenu.dll"
+									   Path="CrayonContextMenu\CrayonContextMenu.dll"
 									   ThreadingModel="STA"/>
 						</com:SurrogateServer>
 					</com:ComServer>

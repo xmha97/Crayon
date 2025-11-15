@@ -1,25 +1,54 @@
-﻿using Microsoft.UI;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Xaml.Shapes;
 using Microsoft.Windows.ApplicationModel.Resources;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Runtime.InteropServices;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics;
 using Windows.Storage;
 using Windows.UI;
-using Microsoft.UI.Windowing;
 
 namespace Crayon
 {
-    public sealed partial class MainWindow : Window
+	public class ColorItem : INotifyPropertyChanged
+	{
+		private bool _isSelected;
+
+		public Color Color { get; set; }
+		public string Name { get; set; }
+		public string FileName { get; set; }
+		public string FileNameAlt { get; set; }
+
+		public bool IsSelected
+		{
+			get => _isSelected;
+			set
+			{
+				if (_isSelected != value)
+				{
+					_isSelected = value;
+					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSelected)));
+				}
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public ColorItem(Color color, string name, string fileName, string fileNameAlt)
+		{
+			Color = color;
+			Name = name;
+			FileName = fileName;
+			FileNameAlt = fileNameAlt;
+		}
+	}
+
+	public sealed partial class MainWindow : Window
 	{
         private ResourceLoader rl = new ResourceLoader();
         public ObservableCollection<ColorItem> AvailableColors { get; } = new ObservableCollection<ColorItem>();
@@ -68,8 +97,8 @@ namespace Crayon
 
         public delegate IntPtr SubclassProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData);
 
-        private readonly int minWidth = 862;
-        private readonly int minHeight = 620;
+        private readonly int minWidth = 500;
+        private readonly int minHeight = 500;
 
 
         public static void RefreshFolder(string folderPath)
@@ -85,22 +114,6 @@ namespace Crayon
             // 3) also send assocchanged to force icon/association refresh
             SHChangeNotify(SHCNE_ASSOCCHANGED, 0, null, null);
         }
-
-        public class ColorItem
-		{
-			public Color Color { get; set; }
-			public string Name { get; set; }
-            public string FileName { get; set; }
-            public string FileNameAlt { get; set; }
-
-            public ColorItem(Color color, string name, string fileName, string fileNameAlt)
-			{
-				Color = color;
-				Name = name;
-                FileName = fileName;
-                FileNameAlt = fileNameAlt;
-            }
-		}
 
         private IntPtr _hwnd;
         private SubclassProc _subclassDelegate;
@@ -120,7 +133,7 @@ namespace Crayon
             this.Closed += (_, _) => RemoveWindowSubclass(_hwnd, _subclassDelegate, 0);
 
             ExtendsContentIntoTitleBar = true;
-			this.SetTitleBar(AppTitleBar);
+            this.SetTitleBar(AppTitleBar);
             this.Title = rl.GetString("DisplayName");
 
             //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows11-drive.ico"),
@@ -186,24 +199,29 @@ namespace Crayon
             return DefSubclassProc(hWnd, msg, wParam, lParam);
         }
 
-        private void Color_Checked(object sender, RoutedEventArgs e)
+		private void Color_Checked(object sender, RoutedEventArgs e)
 		{
-			if (sender is RadioButton rb && rb.DataContext is ColorItem item)
-			{
-				SelectedText.Text = $"You've selected the color—{item.Name}.";
-			}
+			var clicked = (ToggleButton)sender;
+			var item = (ColorItem)clicked.DataContext;
+
+			foreach (var color in AvailableColors)
+				color.IsSelected = false;
+
+			item.IsSelected = true;
+
+			SelectedText.Text = $"You've selected the color—{item.Name}.";
 			SetIcon();
 
-        }
+		}
 
-        private RadioButton FindSelectedRadioButton(ItemsControl itemsControl)
+        private ToggleButton FindSelectedToggleButton(ItemsControl itemsControl)
 		{
 			foreach (var item in itemsControl.Items)
 			{
 				var container = itemsControl.ContainerFromItem(item) as FrameworkElement;
 				if (container != null)
 				{
-					var rb = FindChild<RadioButton>(container);
+					var rb = FindChild<ToggleButton>(container);
 					if (rb != null && rb.IsChecked == true)
 						return rb;
 				}
@@ -231,7 +249,7 @@ namespace Crayon
 		{
             MyInfoBar.IsOpen = false;
 
-            var selectedRadio = FindSelectedRadioButton(ColorsList);
+            var selectedRadio = FindSelectedToggleButton(ColorsList);
             string iconFile = string.Empty;
             string iconFileAlt = string.Empty;
             if (selectedRadio?.DataContext is ColorItem colorItem)
@@ -343,8 +361,8 @@ namespace Crayon
             }
         }
 
-		private void ClearButton_Click(object sender, RoutedEventArgs e)
-		{
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
             Close();
         }
 

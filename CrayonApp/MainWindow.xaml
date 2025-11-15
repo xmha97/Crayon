@@ -34,36 +34,82 @@
                      Message="Error message."
                      IsOpen="False" />
 
-            <ItemsControl x:Name="ColorsList" ItemsSource="{x:Bind AvailableColors}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VariableSizedWrapGrid Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <RadioButton GroupName="Colors" Checked="Color_Checked" Margin="4" Padding="0" Background="Transparent" BorderThickness="0">
-                            <RadioButton.Template>
-                                <ControlTemplate TargetType="RadioButton">
-                                    <ContentPresenter />
-                                </ControlTemplate>
-                            </RadioButton.Template>
-                            <Ellipse x:Name="Circle"
-                    Width="32" Height="32"
-                    StrokeThickness="2">
-                                <Ellipse.Fill>
-                                    <SolidColorBrush Color="{Binding Color}" />
-                                </Ellipse.Fill>
-                                <Ellipse.Stroke>
-                                    <SolidColorBrush Color="Transparent" />
-                                </Ellipse.Stroke>
-                            </Ellipse>
-                        </RadioButton>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+			<ItemsControl x:Name="ColorsList" ItemsSource="{x:Bind AvailableColors}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<ItemsWrapGrid Orientation="Horizontal"
+                           HorizontalAlignment="Left"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
 
-            <TextBlock x:Name="SelectedText" Text="You've selected the color—none." />
+				<ItemsControl.ItemTemplate>
+					<DataTemplate x:DataType="local:ColorItem">
+
+						<ToggleButton IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                          Checked="Color_Checked"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Padding="0" Margin="0"
+                          Width="32" Height="32"
+                          RenderTransformOrigin="0.5,0.5">
+
+							<ToggleButton.Template>
+								<ControlTemplate TargetType="ToggleButton">
+
+									<Grid Width="32" Height="32" RenderTransformOrigin="0.5,0.5">
+										<Grid.RenderTransform>
+											<ScaleTransform x:Name="Scale" ScaleX="1" ScaleY="1"/>
+										</Grid.RenderTransform>
+
+										<Ellipse StrokeThickness="2">
+											<Ellipse.Fill>
+												<SolidColorBrush Color="{Binding Color}" />
+											</Ellipse.Fill>
+											<Ellipse.Stroke>
+												<SolidColorBrush Color="Transparent" />
+											</Ellipse.Stroke>
+										</Ellipse>
+
+										<VisualStateManager.VisualStateGroups>
+											<VisualStateGroup x:Name="ToggleStates">
+
+												<VisualState x:Name="Checked">
+													<Storyboard>
+														<DoubleAnimation Storyboard.TargetName="Scale"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             To="1.2" Duration="0:0:0.10" />
+														<DoubleAnimation Storyboard.TargetName="Scale"
+                                                             Storyboard.TargetProperty="ScaleY"
+                                                             To="1.2" Duration="0:0:0.10" />
+													</Storyboard>
+												</VisualState>
+
+												<VisualState x:Name="Unchecked">
+													<Storyboard>
+														<DoubleAnimation Storyboard.TargetName="Scale"
+                                                             Storyboard.TargetProperty="ScaleX"
+                                                             To="1" Duration="0:0:0.10" />
+														<DoubleAnimation Storyboard.TargetName="Scale"
+                                                             Storyboard.TargetProperty="ScaleY"
+                                                             To="1" Duration="0:0:0.10" />
+													</Storyboard>
+												</VisualState>
+
+											</VisualStateGroup>
+										</VisualStateManager.VisualStateGroups>
+
+									</Grid>
+
+								</ControlTemplate>
+							</ToggleButton.Template>
+
+						</ToggleButton>
+
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<TextBlock x:Name="SelectedText" Text="You've selected the color—none." />
 
         </StackPanel>
 
