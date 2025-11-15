@@ -223,7 +223,7 @@ class __declspec(uuid("3C557AFF-6181-4BBC-937D-E2FE8844DD49")) GrepWinExplorerCo
 public:
     const wchar_t* Title(IShellItemArray*) override
     {
-        return L"Customize";
+        return L"Customize with Crayon";
     }
 
     EXPCMDSTATE State(_In_opt_ IShellItemArray*) override
@@ -267,7 +267,7 @@ public:
         try
         {
             auto gwPath = GetModuleDir(hDll);
-            gwPath += L"\\CrayonApp\\Crayon.exe";
+            gwPath += L"\\..\\CrayonApp\\Crayon.exe";
 
             if (selection)
             {
