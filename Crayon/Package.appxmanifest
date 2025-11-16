@@ -15,11 +15,12 @@
 	xmlns:desktop9="http://schemas.microsoft.com/appx/manifest/desktop/windows10/9"
 	xmlns:desktop10="http://schemas.microsoft.com/appx/manifest/desktop/windows10/10"
 	xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-	IgnorableNamespaces="uap uap2 uap3 uap10 uap15 rescap com desktop desktop4 desktop5 desktop9 desktop10 mp">
+	xmlns:uap18="http://schemas.microsoft.com/appx/manifest/uap/windows10/18"
+	IgnorableNamespaces="uap uap2 uap3 uap10 uap15 rescap com desktop desktop4 desktop5 desktop9 desktop10 mp uap18">
 
 	<Identity Name="Ammari.Crayon"
 			  Publisher="CN=Ammari Corporation, O=Ammari Corporation, L=Karaj, S=Alborz, C=IR"
-			  Version="1.0.167.0" />
+			  Version="1.0.219.0" />
 
 	<mp:PhoneIdentity
 		PhoneProductId="2ddef40a-d23c-4b21-8149-3fc2f923f50b"
@@ -29,7 +30,7 @@
 		<DisplayName>ms-resource:DisplayName</DisplayName>
 		<PublisherDisplayName>ms-resource:PublisherDisplayName</PublisherDisplayName>
 		<Description>ms-resource:Description</Description>
-		<Logo>Images\StoreLogo.png</Logo>
+		<Logo>Assets\StoreLogo.png</Logo>
 	</Properties>
 
 	<Dependencies>
@@ -59,35 +60,24 @@
 
 	<Applications>
 		<Application Id="App"
-					 Executable="$targetnametoken$.exe"
-					 EntryPoint="$targetentrypoint$">
+			            Executable="$targetnametoken$.exe"
+			            EntryPoint="$targetentrypoint$" uap18:RuntimeBehavior="win32App">
 			<uap:VisualElements
-				DisplayName="ms-resource:DisplayName"
-				Description="ms-resource:Description"
-				BackgroundColor="transparent"
-				Square150x150Logo="Images\Square150x150Logo.png"
-				Square44x44Logo="Images\Square44x44Logo.png">
-				<uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"
+			DisplayName="ms-resource:DisplayName"
+			Description="ms-resource:Description"
+			BackgroundColor="transparent"
+			Square150x150Logo="Assets\Square150x150Logo.png"
+			Square44x44Logo="Assets\Square44x44Logo.png">
+				<uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"
 								 ShortName="ms-resource:DisplayName"
-								 Square71x71Logo="Images\Square71x71Logo.png"
-								 Square310x310Logo="Images\Square310x310Logo.png">
+								 Square71x71Logo="Assets\Square71x71Logo.png"
+								 Square310x310Logo="Assets\Square310x310Logo.png">
 					<uap:ShowNameOnTiles>
 						<uap:ShowOn Tile="square150x150Logo"/>
 						<uap:ShowOn Tile="wide310x150Logo"/>
 						<uap:ShowOn Tile="square310x310Logo"/>
 					</uap:ShowNameOnTiles>
 				</uap:DefaultTile >
-				<uap:SplashScreen Image="Images\SplashScreen.png"/>
-				<uap:LockScreen BadgeLogo="Images\BadgeLogo.png"
-								Notification="badgeAndTileText"/>
-				
-				<uap:InitialRotationPreference>
-					<uap:Rotation Preference="landscape"/>
-					<uap:Rotation Preference="portrait"/>
-					<uap:Rotation Preference="landscapeFlipped"/>
-					<uap:Rotation Preference="portraitFlipped"/>
-				</uap:InitialRotationPreference>
-				
 			</uap:VisualElements>
 			<Extensions>
 
@@ -103,15 +93,15 @@
 
 				<desktop4:Extension Category="windows.fileExplorerContextMenus">
 					<desktop4:FileExplorerContextMenus>
-						
+
 						<desktop5:ItemType Type="Directory">
 							<desktop5:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						</desktop5:ItemType>
-						
+
 						<desktop10:ItemType Type="Drive">
 							<desktop10:Verb Id="Crayon" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						</desktop10:ItemType>
-						
+
 					</desktop4:FileExplorerContextMenus>
 				</desktop4:Extension>
 
@@ -126,7 +116,7 @@
 					<desktop9:FileExplorerClassicDragDropContextMenuHandler>
 						<desktop9:ExtensionHandler Type="Directory" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
 						<desktop9:ExtensionHandler Type="Drive" Clsid="3C557AFF-6181-4BBC-937D-E2FE8844DD49" />
-    
+
 					</desktop9:FileExplorerClassicDragDropContextMenuHandler>
 				</desktop9:Extension>
 
@@ -134,7 +124,7 @@
 					<com:ComServer>
 						<com:SurrogateServer DisplayName="Crayon Context Menu Handler">
 							<com:Class Id="3C557AFF-6181-4BBC-937D-E2FE8844DD49"
-									   Path="CrayonContextMenu\CrayonContextMenu.dll"
+									   Path="CrayonContextMenu.dll"
 									   ThreadingModel="STA"/>
 						</com:SurrogateServer>
 					</com:ComServer>

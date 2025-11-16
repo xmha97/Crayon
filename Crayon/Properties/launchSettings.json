@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Crayon (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Crayon (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

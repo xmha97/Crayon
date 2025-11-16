@@ -228,27 +228,27 @@ public:
 
     EXPCMDSTATE State(_In_opt_ IShellItemArray*) override
     {
-        if (m_site)
-        {
-            ComPtr<IOleWindow> oleWindow;
-            m_site.As(&oleWindow);
-            if (oleWindow)
-            {
-                // We don't want to show the menu on the classic context menu.
-                // The classic menu provides an IOleWindow, but the main context
-                // menu of the left treeview in explorer does too.
-                // So we check the window class name: if it's "NamespaceTreeControl",
-                // then we're dealing with the main context menu of the tree view.
-                // If it's not, then we're dealing with the classic context menu
-                // and there we hide this menu entry.
-                HWND hWnd = nullptr;
-                oleWindow->GetWindow(&hWnd);
-                wchar_t szWndClassName[MAX_PATH] = {0};
-                GetClassName(hWnd, szWndClassName, _countof(szWndClassName));
-                if (wcscmp(szWndClassName, L"NamespaceTreeControl"))
-                    return ECS_HIDDEN;
-            }
-        }
+        //if (m_site)
+        //{
+        //    ComPtr<IOleWindow> oleWindow;
+        //    m_site.As(&oleWindow);
+        //    if (oleWindow)
+        //    {
+        //        // We don't want to show the menu on the classic context menu.
+        //        // The classic menu provides an IOleWindow, but the main context
+        //        // menu of the left treeview in explorer does too.
+        //        // So we check the window class name: if it's "NamespaceTreeControl",
+        //        // then we're dealing with the main context menu of the tree view.
+        //        // If it's not, then we're dealing with the classic context menu
+        //        // and there we hide this menu entry.
+        //        HWND hWnd = nullptr;
+        //        oleWindow->GetWindow(&hWnd);
+        //        wchar_t szWndClassName[MAX_PATH] = {0};
+        //        GetClassName(hWnd, szWndClassName, _countof(szWndClassName));
+        //        if (wcscmp(szWndClassName, L"NamespaceTreeControl"))
+        //            return ECS_HIDDEN;
+        //    }
+        //}
         return ECS_ENABLED;
     }
 
@@ -267,7 +267,7 @@ public:
         try
         {
             auto gwPath = GetModuleDir(hDll);
-            gwPath += L"\\..\\CrayonApp\\Crayon.exe";
+            gwPath += L"\\Crayon.exe";
 
             if (selection)
             {
@@ -283,11 +283,11 @@ public:
                     if (itemName)
                     {
                         if (path.empty())
-                            path = itemName;
+                            path = L"\"" + std::wstring(itemName) + L"\"";
                         else
                         {
                             path += L"|";
-                            path += itemName;
+                            path += L"\"" + std::wstring(itemName) + L"\"";
                         }
                         CoTaskMemFree(itemName);
                     }
