@@ -135,8 +135,25 @@
 		</Grid.RowDefinitions>
 
 		<Grid x:Name="AppTitleBar" Height="32" Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition x:Name="TitlebarLeftPaddingColumn" Width="0" />
+				<ColumnDefinition x:Name="TitlebarCenterDragColumn" Width="*" />
+				<ColumnDefinition x:Name="TitlebarRightPaddingColumn" Width="0" />
+			</Grid.ColumnDefinitions>
 
+			<Grid Grid.Column="0">
+				<Grid.Background>
+					<SolidColorBrush Color="#327F7F7F" />
+				</Grid.Background>
+			</Grid>
+
+			<Grid Grid.Column="2">
+				<Grid.Background>
+					<SolidColorBrush Color="#327F7F7F" />
+				</Grid.Background>
+			</Grid>
 		</Grid>
+
 		<StackPanel Padding="20" Spacing="20" Grid.Row="1">
 
 			<ItemsControl x:Name="ColorsList" ItemsSource="{x:Bind AvailableColors}">

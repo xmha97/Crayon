@@ -116,23 +116,26 @@ namespace Crayon
 
         private IntPtr _hwnd;
         private SubclassProc _subclassDelegate;
-
-        public MainWindow()
+		private AppWindow m_AppWindow;
+		public MainWindow()
 		{
             InitializeComponent();
 
-            _hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+			AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
+			m_AppWindow = this.AppWindow;
+			m_AppWindow.Resize(new SizeInt32(minWidth, minHeight));
+			m_AppWindow.Changed += AppWindow_Changed;
+
+			_hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             _subclassDelegate = new SubclassProc(WndProc);
             SetWindowSubclass(_hwnd, _subclassDelegate, 0, IntPtr.Zero);
 
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(_hwnd);
-            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
-            appWindow.Resize(new SizeInt32(minWidth, minHeight));
 
             this.Closed += (_, _) => RemoveWindowSubclass(_hwnd, _subclassDelegate, 0);
 
             ExtendsContentIntoTitleBar = true;
-            this.SetTitleBar(AppTitleBar);
+			this.SetTitleBar(AppTitleBar);
             this.Title = rl.GetString("DisplayName");
 
             //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Drive", "drive-windows11-drive.ico"),
@@ -183,7 +186,46 @@ namespace Crayon
             //AvailableColors.Add(new ColorItem(Color.FromArgb(255, 0, 0, 0), "Videos", "library-windows10-videos.ico")
         }
 
-        private IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData)
+        private void AppTitleBar_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+			if (ExtendsContentIntoTitleBar == true)
+			{
+				double scaleAdjustment = AppTitleBar.XamlRoot.RasterizationScale;
+
+				TitlebarRightPaddingColumn.Width = new GridLength(m_AppWindow.TitleBar.RightInset / scaleAdjustment);
+				TitlebarLeftPaddingColumn.Width = new GridLength(m_AppWindow.TitleBar.LeftInset / scaleAdjustment);
+			}
+		}
+
+		private void AppWindow_Changed(AppWindow sender, AppWindowChangedEventArgs args)
+		{
+			if (args.DidPresenterChange)
+			{
+				switch (sender.Presenter.Kind)
+				{
+					case AppWindowPresenterKind.CompactOverlay:
+						AppTitleBar.Visibility = Visibility.Collapsed;
+						sender.TitleBar.ResetToDefault();
+						break;
+
+					case AppWindowPresenterKind.FullScreen:
+						AppTitleBar.Visibility = Visibility.Collapsed;
+						sender.TitleBar.ExtendsContentIntoTitleBar = true;
+						break;
+
+					case AppWindowPresenterKind.Overlapped:
+						AppTitleBar.Visibility = Visibility.Visible;
+						sender.TitleBar.ExtendsContentIntoTitleBar = true;
+						break;
+
+					default:
+						sender.TitleBar.ResetToDefault();
+						break;
+				}
+			}
+		}
+
+		private IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam, IntPtr uIdSubclass, IntPtr dwRefData)
         {
             if (msg == WM_GETMINMAXINFO && lParam != IntPtr.Zero)
             {
