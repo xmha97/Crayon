@@ -1,0 +1,43 @@
+<svg version="1.1" viewBox="0 0 39.5 39.5" xmlns="http://www.w3.org/2000/svg" width="39.5" height="39.5" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style>.st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill: url(#linear-gradient);
+      }</style>
+  <linearGradient id="linear-gradient" x1="33.73" x2="5.77" y1="-1029.7" y2="-1001.8" gradientTransform="matrix(1,0,0,-1,0,-996)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#47c779" offset="0"/>
+   <stop stop-color="#55a2d6" offset="1"/>
+  </linearGradient>
+  <filter id="filter17" x="-.1048" y="-.10481" width="1.2096" height="1.2096" color-interpolation-filters="sRGB">
+   <feFlood flood-color="rgb(0,0,0)" flood-opacity=".49804" in="SourceGraphic" result="flood"/>
+   <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="1.000000"/>
+   <feOffset dx="0.000000" dy="0.000000" in="blur" result="offset"/>
+   <feComposite in="flood" in2="offset" operator="in" result="comp1"/>
+   <feComposite in="SourceGraphic" in2="comp1" result="comp2"/>
+  </filter>
+  <filter id="filter20" x="-.31496" y="-.31496" width="1.6299" height="1.6299" color-interpolation-filters="sRGB">
+   <feFlood flood-color="rgb(0,0,0)" flood-opacity=".49804" in="SourceGraphic" result="flood"/>
+   <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="1.000000"/>
+   <feOffset dx="0.000000" dy="0.000000" in="blur" result="offset"/>
+   <feComposite in="flood" in2="offset" operator="in" result="comp1"/>
+   <feComposite in="SourceGraphic" in2="comp1" result="comp2"/>
+  </filter>
+  <linearGradient id="linearGradient21" x1="28.103" x2="8.5166" y1="8.5053" y2="28.092" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#fff" stop-opacity="0" offset="0"/>
+   <stop stop-color="#fff" stop-opacity=".81176" offset=".3"/>
+   <stop stop-color="#fff" offset=".5"/>
+   <stop stop-color="#fff" stop-opacity=".78431" offset=".7"/>
+   <stop stop-color="#fff" stop-opacity="0" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient26" x1="24.439" x2="33.221" y1="24.449" y2="33.231" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#fff" offset=".74837"/>
+   <stop stop-color="#fff" stop-opacity="0" offset="1"/>
+  </linearGradient>
+ </defs>
+ <circle class="st1" cx="19.75" cy="19.75" r="19.75" fill="url(#linear-gradient)"/>
+ <path class="st0" d="m29.54 22.47-7.06 7.06c-0.29 0.29-0.77 0.29-1.05 0l-14.36-14.35c-0.14-0.14-0.21-0.33-0.21-0.53s0.08-0.38 0.21-0.53l7.06-7.06c0.14-0.14 0.32-0.21 0.53-0.21s0.38 0.08 0.53 0.21l14.36 14.36c0.14 0.14 0.21 0.32 0.21 0.53s-0.08 0.38-0.21 0.53h-0.01z" fill="url(#linearGradient21)" filter="url(#filter17)"/>
+ <polygon class="st0" points="29.63 25.03 32.64 32.65 25.02 29.65" fill="url(#linearGradient26)" filter="url(#filter20)"/>
+</svg>
