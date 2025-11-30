@@ -126,6 +126,10 @@ namespace Crayon
 			m_AppWindow.Resize(new SizeInt32(minWidth, minHeight));
 			m_AppWindow.Changed += AppWindow_Changed;
 
+			m_AppWindow.SetIcon("Assets\\app-theme.ico");
+			m_AppWindow.SetTaskbarIcon("Assets\\app-theme.ico");
+			m_AppWindow.SetTitleBarIcon("Assets\\app-theme.ico");
+
 			_hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             _subclassDelegate = new SubclassProc(WndProc);
             SetWindowSubclass(_hwnd, _subclassDelegate, 0, IntPtr.Zero);

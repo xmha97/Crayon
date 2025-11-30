@@ -15,6 +15,7 @@
     <PublishSelfContained>true</PublishSelfContained>
     <SelfContained>true</SelfContained>
     <Nullable>enable</Nullable>
+	  <ApplicationIcon>Assets\app-theme.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
